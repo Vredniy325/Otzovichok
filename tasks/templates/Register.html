@@ -1,0 +1,55 @@
+{%extends 'Base.html'%}
+{% load static %}
+
+{%block head%}
+  <link rel="stylesheet" href="{% static 'css/styleReg.css' %}">
+    <title>Отзывы</title>
+    <style>
+        /* Стили для правильного ввода */
+        input:valid {
+            border-color: green;
+        }
+
+        /* Стили для неправильного ввода */
+        input:invalid {
+            border-color: red;
+        }
+
+        /* Стили для выделенного поля */
+        input:focus:invalid {
+            border-color: blue;
+        }
+
+        /* Стили для сообщений об ошибках */
+        .error {
+            color: red;
+        }
+    </style>
+{%endblock%}
+
+{%block content%}
+<h1>Регистрация</h1>
+<p>Уже есть учётная запись?
+<a href="{% url 'LogIn' %}">Войти</a> </p>
+
+<form action="{% url 'Registration' %}" method="POST" id="registrationForm">
+    {% csrf_token %}
+    <label for="username">Ваше имя:</label><br>
+    <input type="text" id="username" name="username" required><br>
+    <span id="nameError" class="error"></span><br>
+
+    <label for="email">Ваш email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <span id="emailError" class="error"></span><br>
+
+    <label for="password">Ваш пароль:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <span id="passwordError" class="error"></span><br>
+
+    <label for="confirmPassword">Подтвердите пароль:</label><br>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+    <span id="confirmPasswordError" class="error"></span><br>
+
+    <input type="submit" class="Regbutton" value="Зарегистрироваться">
+</form>
+{%endblock%}

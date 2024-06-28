@@ -1,0 +1,50 @@
+{%extends 'Base.html'%}
+{% load static %}
+
+{%block head%}
+   <link rel="stylesheet" href="{% static 'css/styleMain.css' %}">
+    <!-- Подключаем скрипт -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Главная страница</title>
+{%endblock%}
+
+{%block content%}
+    <div class="search-container">
+        <input type="text" placeholder="Поиск...">
+        <button type="submit">&#128269;</button>
+    </div>
+    <div class="review">
+        <form method="get" action="{% url 'AddOtzyv' %}">
+            <input class="review-button" type="submit" value="Написать отзыв">
+        </form>
+    </div>
+    <section>
+        <div class="content">
+            <h2>Последние отзывы</h2>
+
+            {% for otzyv in otzyv %}
+            <div class="grid">
+                <img src="{{otzyv.Image.url}}">
+                <div>
+                    <h3>{{otzyv.company}}</h3>
+                    <p>{{otzyv.text}}</p>
+                </div>
+                <div class="rating-buttons">
+                        <!-- <button class="like-button" data-action="like" data-type="review" data-id="1">&#128077;</button>
+                    <button class="dislike-button" data-action="dislike" data-type="review" data-id="1">&#128078;</button>
+ -->
+                      <button class="btn btn-sm btn-primary" data-otzyv="{{ otzyv.id }}" data-value="1">&#128077;</button>
+                      <button class="btn btn-sm btn-secondary" data-otzyv="{{ otzyv.id }}" data-value="-1">&#128078;</button>
+                      <button class="btn btn-sm rating-sum">{{ otzyv.get_sum_rating }}</button>
+                </div>
+            </div>
+            {% endfor %}
+
+            <a href="Main2.html" class="cta-button">Далее</a>
+        </div>
+    </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/backend.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/like.js' %}"></script>
+
+{%endblock%}

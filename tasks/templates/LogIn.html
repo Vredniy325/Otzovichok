@@ -1,0 +1,46 @@
+{%extends 'Base.html'%}
+{% load static %}
+
+{%block head%}
+      <link rel="stylesheet" href="{% static 'css/styleReg.css' %}">
+    <title>Вход</title>
+    <style>
+        /* Стили для правильного ввода */
+        input:valid {
+            border-color: green;
+        }
+
+        /* Стили для неправильного ввода */
+        input:invalid {
+            border-color: red;
+        }
+
+        /* Стили для выделенного поля */
+        input:focus:invalid {
+            border-color: blue;
+        }
+
+        /* Стили для сообщений об ошибках */
+        .error {
+            color: red;
+        }
+    </style>
+{%endblock%}
+
+{%block content%}
+<h1>Вход</h1>
+<p>Нет учётной записи? <a href="{% url 'Register' %}">Зарегистрироваться</a></p>
+
+    <form action="{% url 'LogInFunc' %}" method="POST" id="loginForm">
+        {% csrf_token %}
+        <label for="username">Ваше имя:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <span id="nameError" class="error"></span><br>
+
+        <label for="password">Ваш пароль:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <span id="passwordError" class="error"></span><br>
+
+        <input type="submit" class="Regbutton" value="Вход">
+    </form>
+{%endblock%}

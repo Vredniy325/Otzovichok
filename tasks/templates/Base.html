@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head %}
+        {% endblock %}
+    </head>
+    <form id="myForm" method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+    </form>
+    <body>
+        <header>
+            <h1><em>Глас народа</em></h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'Help' %}">Помощь</a></li>
+                      {% if request.user.is_authenticated %}
+                    <li><a href="javascript:void(0);" onclick="document.getElementById('myForm').submit();">Выход</a></li>
+                      {% else %}
+                      <li><a href="{% url 'Register' %}">Вход/Регистрация</a></li>
+                      {% endif %}
+                </ul>
+            </nav>
+        </header>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

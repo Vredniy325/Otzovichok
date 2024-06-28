@@ -1,0 +1,25 @@
+{%extends 'Base.html'%}
+{% load static %}
+
+{%block head%}
+  <link rel="stylesheet" href="{% static 'css/styleHelp.css' %}">
+  <title>Главная страница</title>
+{%endblock%}
+
+{%block content%}
+<script src="{% static 'js/script.js' %}"></script>
+
+    <header>
+      <h1 style="cursor: pointer">Помощь</h1>
+    </header>
+    <section>
+      <h2 style="cursor: pointer" onclick="toggleSection('search')">Как оставить отзыв</h2>
+      <p  id="search" class="hidden">Чтобы оставить отзыв, перейдите на главную страницу сайта. В правом верхнем углу нажмите кнопку "Написать отзыв" (Важно! Чтобы оставить отзыв вам нужно войти в учётную запись!). Остаётся только написать плюсы и минусы, а также основную часть вашего отзыва.</p>
+    </section>
+
+    <section>
+      <h2 style="cursor: pointer" onclick="toggleSection('Registration')">Регистрация и вход</h2>
+      <p  id="Registration" class="hidden"> Для регистрации вам нужно нажать на кнопку "Вход/Регистрация" на верхней части страницы, вам понадобится ввести адрес электронной почты, а также придумать пароль. Вам будет отправлено письмо с кодом подтверждения учётной записи, перейдите на ссылку в письме и регистрация будет завершена.
+      Чтобы войти в учётную запись, нужно на той же странице нажать кнопку "Войти" и ввести свой адресс электронной почты и пароль.</p>
+    </section>
+{%endblock%}
